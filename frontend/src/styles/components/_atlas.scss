@@ -3,8 +3,6 @@
   user-select: none;
   position: relative;
   flex: 0 0 auto;
-  height: 48px;
-  width: 48px;
 
   .sprite {
     width: 100%;
@@ -13,28 +11,24 @@
 
   .color {
     position: absolute;
-    background-size: 480px 480px;
     background-image: url(../assets/images/color_atlas.gif);
     background-repeat: no-repeat;
   }
 
   .mouth {
     position: absolute;
-    background-size: 480px 480px;
     background-image: url(../assets/images/mouth_atlas.gif);
     background-repeat: no-repeat;
   }
 
   .eyes {
     position: absolute;
-    background-size: 480px 480px;
     background-image: url(../assets/images/eyes_atlas.gif);
     background-repeat: no-repeat;
   }
 
   .special {
     position: absolute;
-    background-size: 800px 800px;
     background-image: url(../assets/images/special_atlas.gif);
     background-repeat: no-repeat;
     left: -33%;

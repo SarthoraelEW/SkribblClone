@@ -30,5 +30,14 @@
     .create-room-button {
       margin-top: 4px;
     }
+
+    .joinRoomInput {
+      display: flex;
+
+      button {
+        margin-left: 4px;
+        width: 108px;
+      }
+    }
   }
 }

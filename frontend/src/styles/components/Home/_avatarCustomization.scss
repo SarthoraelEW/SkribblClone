@@ -1,0 +1,56 @@
+.avatar-customization {
+  margin-top: 8px;
+  background-color: #f5f4f4;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #d3d3d3;
+  border-radius: 2px;
+
+  .randomize-button {
+    cursor: pointer;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 4px;
+    top: 4px;
+    opacity: 0.6;
+    background-image: url('../../assets/images/randomize.gif');
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .arrows {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .arrow {
+      flex: 0 0 auto;
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      background-image: url('../../assets/images/arrow.gif');
+      background-size: 200%;
+      background-repeat: no-repeat;
+    }
+
+    .left-arrow {
+      background-position: 0 0;
+
+      &:hover {
+        background-position: 100% 0;
+      }
+    }
+
+    .right-arrow {
+      background-position: 0 100%;
+
+      &:hover {
+        background-position: 100% 100%;
+      }
+    }
+  }
+}

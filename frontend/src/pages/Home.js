@@ -7,7 +7,7 @@ import Footer from '../components/Home/Footer';
 
 const Home = () => {
   return (
-    <div className='home'>
+    <div className='page'>
       <MuteButton />
       <div className='home-container'>
         <Header />

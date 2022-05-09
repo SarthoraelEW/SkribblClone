@@ -1,6 +1,15 @@
 @import './settings';
-@import './pages/home';
+@import './pages/page';
 @import './components/muteButton';
 @import './components/Home/header';
 @import './components/atlas';
 @import './components/Home/playerForm';
+@import './components/Home/avatarCustomization';
+@import './components/Home/gameInformation';
+@import './components/Home/footer';
+@import './pages/credits';
+@import './components/PrivateRoom/header';
+@import './pages/privateRoom';
+@import './components/PrivateRoom/settings';
+@import './components/PrivateRoom/players';
+@import './components/PrivateRoom/footer';

@@ -1,5 +1,8 @@
 import React from "react";
 
+const BACKGROUND_SIZE = 480;
+const SPECIAL_BACKGROUND_SIZE = 800;
+
 const ATLAS_WIDTH = 48;
 const ATLAS_HEIGHT = 48;
 
@@ -27,22 +30,30 @@ const Atlas = (props) => {
 
 
   return (
-    <div className="avatar">
+    <div className="avatar"
+         style={{
+           width: `${ATLAS_WIDTH * scale}px`,
+           height: `${ATLAS_HEIGHT * scale}px`
+         }}
+         >
       <div
         className="sprite color"
         style={{
+          backgroundSize: `${BACKGROUND_SIZE * scale}px ${BACKGROUND_SIZE * scale}px`,
           backgroundPosition: `${getAtlasWidth(color)}px ${getAtlasHeight(color)}px`,
         }}
       ></div>
       <div
         className="sprite mouth"
         style={{
+          backgroundSize: `${BACKGROUND_SIZE * scale}px ${BACKGROUND_SIZE * scale}px`,
           backgroundPosition: `${getAtlasWidth(mouth)}px ${getAtlasHeight(mouth)}px`,
         }}
       ></div>
       <div
         className="sprite eyes"
         style={{
+          backgroundSize: `${BACKGROUND_SIZE * scale}px ${BACKGROUND_SIZE * scale}px`,
           backgroundPosition: `${getAtlasWidth(eyes)}px ${getAtlasHeight(eyes)}px`,
         }}
       ></div>
@@ -50,6 +61,7 @@ const Atlas = (props) => {
         <div
           className="sprite special"
           style={{
+            backgroundSize: `${SPECIAL_BACKGROUND_SIZE * scale}px ${SPECIAL_BACKGROUND_SIZE * scale}px`,
             backgroundPosition: `${getSpecialAtlasWidth(special)}px ${getSpecialAtlasHeight(special)}px`,
           }}
         ></div>

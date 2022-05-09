@@ -1,0 +1,36 @@
+.footer {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+
+  .invite-bar {
+    display: flex;
+    width: 100%;
+
+    .invite {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background-color: #fff;
+      height: 32px;
+      border: 1px solid #d3d3d3;
+      line-height: 32px;
+      text-align: center;
+      border-radius: 2px 0 0 2px;
+      
+      h3 {
+        font-size: 18px;
+        color: #e27220;
+        padding: 0;
+        margin: 6px 0 0 0;
+      }
+    }
+
+    button {
+      flex: 0 0 auto;
+      height: 32px;
+      border-left: 0;
+      border-radius: 0 2px 2px 0;
+    }
+  }
+}
