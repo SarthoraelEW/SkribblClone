@@ -1,0 +1,45 @@
+.settings {
+  flex: 1 1 auto;
+
+  &-container {
+    flex-direction: column;
+    margin-right: 8px;
+
+    h3 {
+      flex: 0 0 auto;
+      font-size: 28px;
+      text-align: center;
+      color: #333;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #d3d3d3;
+      border-radius: 2px 2px 0 0;
+      margin: 5px 0 0 0;
+    }
+
+    .settingsContent {
+      flex: 1 1 auto;
+      padding: 8px;
+      background-color: #fff;
+      border: 1px solid #d3d3d3;
+      border-top: 0;
+      border-radius: 0 0 2px 2px;
+      display: flex;
+      flex-direction: column;
+
+      .inputsContainer {
+        flex: 1 1 auto;
+      }
+
+      .buttonsContainer {
+        flex: 0 0 auto;
+        width: 100%;
+        display: flex;
+      }
+    }
+
+    input[disabled] {
+      cursor: not-allowed;
+    }
+  }
+}

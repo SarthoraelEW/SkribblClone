@@ -1,0 +1,142 @@
+.tools {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+
+  .colorPreview {
+    flex: 0 0 auto;
+    height: 48px;
+    width: 48px;
+    margin-right: 8px;
+    border-radius: 2px;
+  }
+
+  .colorSelectorTable {
+    flex: 0 0 auto;
+    height: 100%;
+    margin-right: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .colorSelectorRaw {
+      height: 24px;
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .colorSelector {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+  .drawingTools {
+    display: flex;
+    margin-right: 8px;
+  }
+
+  .toolContainer {
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    border-radius: 2px;
+    margin-right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .toolActive {
+    background-color: #9664c8;
+    filter: none;
+  }
+
+  .lineWidths {
+    display: flex;
+
+    .lineWidth {
+      position: relative;
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      border-radius: 2px;
+      background-color: #fff;
+      margin-left: 4px;
+      cursor: pointer;
+
+      .sizeCenter {
+        position: absolute;
+        left: 24px;
+        top: 24px;
+
+        .size {
+          position: absolute;
+          background-color: #000;
+        }
+
+        .size6 {
+          left: -3px;
+          top: -3px;
+          width: 6px;
+          height: 6px;
+          border-radius: 3px;
+        }
+
+        .size16 {
+          left: -8px;
+          top: -8px;
+          width: 16px;
+          height: 16px;
+          border-radius: 8px;
+        }
+
+        .size30 {
+          left: -15px;
+          top: -15px;
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+        }
+
+        .size44 {
+          left: -22px;
+          top: -22px;
+          width: 44px;
+          height: 44px;
+          border-radius: 22px;
+        }
+      }
+    }
+  }
+
+  .clearContainer {
+    flex: 0 0 auto;
+
+    .buttonClear {
+      height: 100%;
+      width: 48px;
+      background-image: url("../../assets/images/clear.gif");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      opacity: .6;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

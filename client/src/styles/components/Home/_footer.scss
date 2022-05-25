@@ -1,0 +1,38 @@
+.footer {
+  flex: 0 1 auto;
+  width: 490px;
+  min-width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+
+  a {
+    color: #add8e6;
+
+    :hover {
+      color: #5f9ea0;
+    }
+  }
+
+  .twitterLink {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+    font-weight: bold;
+
+    .footerTwitterIcon {
+      margin-right: 5px;
+    }
+
+  }
+
+  .tos {
+    width: 100%;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  p {
+    color: #8c8c8c;
+    text-align: center;
+  }
+}

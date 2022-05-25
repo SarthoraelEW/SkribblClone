@@ -1,0 +1,27 @@
+.draw {
+  flex: 1 1 auto;
+  min-width: 300px;
+  position: relative;
+  margin: 0;
+  line-height: 0;
+
+  .drawContainer {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+
+    canvas {
+      background: #fff;
+      width: 100%;
+      height: auto;
+    }
+
+    .thumbs {
+      width: 96px;
+      height: 48px;
+      right: 8px;
+      top: 8px;
+      position: absolute;
+    }
+  }
+}

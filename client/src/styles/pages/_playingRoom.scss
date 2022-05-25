@@ -1,0 +1,12 @@
+.playingRoom {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+
+  .playingRoomContainer {
+    display: flex;
+    justify-content: center;
+  }
+}

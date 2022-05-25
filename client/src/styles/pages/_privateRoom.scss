@@ -1,0 +1,22 @@
+.roomInformations {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.privateRoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 16.66666%;
+  width: 66.66666%;
+  float: left;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 35px;
+  color: #fff;
+}

@@ -1,0 +1,11 @@
+FR:parasol,EN:beach umbrella;
+FR:chat,EN:cat;
+FR:chien,EN:dog;
+FR:homme,EN:man;
+FR:arc-en-ciel,EN:rainbow;
+FR:ordinateur,EN:computer;
+FR:oreiller,EN:pillow;
+FR:tablette,EN:tablet;
+FR:balançoire,EN:swing;
+FR:papillon,EN:butterfly;
+FR:sac à main,EN:handbag

@@ -1,0 +1,57 @@
+.sidebar {
+  position: relative;
+  margin-left: 8px;
+  width: 340px;
+  min-width: 340px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .chat {
+    height: 64px;
+    flex: 1 0 auto;
+    border-radius: 2px;
+
+    .boxChat {
+      box-sizing: border-box;
+      height: 100%;
+      padding: 4px;
+
+      .chatMessages {
+        height: calc(100% - 34px);
+        overflow-y: auto;
+
+        p {
+          padding: 3px;
+          margin: 0;
+          word-wrap: break-word;
+        }
+
+        .success {
+          color: rgb(86, 206, 39);
+          font-weight: bold;
+        }
+
+        .info {
+          color: rgb(57, 117, 206);
+          font-weight: bold;
+        }
+
+        .warning {
+          color: rgb(206, 79, 10);
+          font-weight: bold;
+        }
+      }
+
+      .boxInput {
+        height: 34px;
+      }
+    }
+  }
+
+  .chat .boxChat {
+    background: #eee;
+    width: 100%;
+  }
+}

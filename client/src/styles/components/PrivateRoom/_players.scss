@@ -1,0 +1,42 @@
+.players {
+  flex: 0 0 auto;
+
+  &-container {
+    margin-left: 4px;
+    width: 412px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .player {
+      flex: 0 0 auto;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 4px;
+      margin-right: 4px;
+      opacity: .7;
+      cursor: pointer;
+
+      h5 {
+        width: 96px;
+        font-size: 12px;
+        word-wrap: break-word;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .name {
+        color: #fff;
+        z-index: 2;
+      }
+
+      .you {
+        color: #87cefa;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

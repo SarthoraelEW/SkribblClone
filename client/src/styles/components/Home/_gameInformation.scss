@@ -1,0 +1,41 @@
+.game-information {
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
+  width: 490px;
+  flex: 0 1 auto;
+  margin-right: auto;
+  margin-left: auto;
+
+
+  .updateInfo {
+    background-color: #baffaa;
+    border-radius: 2px;
+    border: 1px solid #90EA7C;
+    color: #105B00;
+
+    padding: 4px;
+    margin-bottom: 4px;
+  }
+
+  .tab {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    max-height: 0;
+    transition: height 0.3s ease-in-out;
+    display: none;
+  }
+
+  .max-content {
+    max-height: max-content;
+    display: block;
+  }
+}
