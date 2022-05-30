@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Draw from "../components/PlayingRoom/Draw";
 import RoundDetails from "../components/PlayingRoom/RoundDetails";
 import Header from "../components/PrivateRoom/Header";
 import MuteButton from "../components/MuteButton";
 import Scoreboard from "../components/PlayingRoom/Scoreboard";
 import Chat from "../components/PlayingRoom/Chat";
+import Overlay from "../components/PlayingRoom/Overlay";
 
 const testPlayers = [
   {
@@ -90,6 +91,8 @@ const testRoom = {
 };
 
 const PlayingRoom = () => {
+  const [overlayShowed, setOverlayShowed] = useState(true);
+
   return (
     <div className="page">
       <MuteButton />
@@ -99,7 +102,10 @@ const PlayingRoom = () => {
           <RoundDetails room={testRoom} />
           <div className="playingRoomContainer">
             <Scoreboard room={testRoom} />
-            <Draw />
+            <div className="draw">
+              <Draw />
+              <Overlay isDisplay={overlayShowed}/>
+            </div>
             <Chat room={testRoom} />
           </div>
         </div>

@@ -157,7 +157,10 @@ const Tools = (props) => {
           className={
             "toolContainer" + (props.tool === "PEN" ? " toolActive" : "")
           }
-          onClick={() => props.setTool("PEN")}
+          onClick={() => {
+            props.setTool("PEN");
+            props.setCursorUrl("PEN");
+          }}
         >
           <img
             className="toolIcon"
@@ -173,7 +176,10 @@ const Tools = (props) => {
           className={
             "toolContainer" + (props.tool === "ERASER" ? " toolActive" : "")
           }
-          onClick={() => props.setTool("ERASER")}
+          onClick={() => {
+            props.setTool("ERASER");
+            props.setCursorUrl("ERASER");
+          }}
         >
           <img
             className="toolIcon"
@@ -189,7 +195,11 @@ const Tools = (props) => {
           className={
             "toolContainer" + (props.tool === "BUCKET" ? " toolActive" : "")
           }
-          onClick={() => props.setTool("BUCKET")}
+          onClick={() => {
+            props.setTool("BUCKET");
+            props.setCursorUrl("BUCKET");
+          }
+          }
         >
           <img
             className="toolIcon"
@@ -203,23 +213,35 @@ const Tools = (props) => {
         </div>
       </div>
       <div className="lineWidths">
-        <div className="lineWidth" onClick={() => props.setLineWidth(SIZE1)}>
-          <div className="sizeCenter">
+        <div className="lineWidth" onClick={() => {
+          props.setLineWidth(SIZE1);
+          props.setCursorUrl(props.tool, SIZE1);
+        }}>
+          <div className="sizeCenter" id="cursor6">
             <div className="size size6" />
           </div>
         </div>
-        <div className="lineWidth" onClick={() => props.setLineWidth(SIZE2)}>
-          <div className="sizeCenter">
+        <div className="lineWidth" onClick={() => {
+          props.setLineWidth(SIZE2);
+          props.setCursorUrl(props.tool, SIZE2);
+        }}>
+          <div className="sizeCenter" id="cursor16">
             <div className="size size16" />
           </div>
         </div>
-        <div className="lineWidth" onClick={() => props.setLineWidth(SIZE3)}>
-          <div className="sizeCenter">
+        <div className="lineWidth" onClick={() => {
+          props.setLineWidth(SIZE3);
+          props.setCursorUrl(props.tool, SIZE3)
+        }}>
+          <div className="sizeCenter" id="cursor30">
             <div className="size size30" />
           </div>
         </div>
-        <div className="lineWidth" onClick={() => props.setLineWidth(SIZE4)}>
-          <div className="sizeCenter">
+        <div className="lineWidth" onClick={() => {
+          props.setLineWidth(SIZE4);
+          props.setCursorUrl(props.tool, SIZE4)
+        }}>
+          <div className="sizeCenter" id="cursor44">
             <div className="size size44" />
           </div>
         </div>

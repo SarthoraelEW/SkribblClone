@@ -109,26 +109,32 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("start_new_round", (data) => {
+  socket.on("start_game", (data) => {
     const room = rooms.get(data.token);
     const firstPlayer = Math.floor(Math.random() * room.players.length);
     room.firstPlayerRound = firstPlayer;
     room.currentPlayer = firstPlayer;
     room.currentRound++;
+    wordChoices = fileParser.getThreeRandomWords(words);
     rooms.set(data.token, room);
-    socket.to(data.token).emit("start_new_round", room);
+    socket.to(data.token).except(room.players[room.currentPlayer]).emit("new_drawer", room);
+    socket.to(room.players[room.currentPlayer]).emit("words", {room: room, words: wordChoices});
   });
 
   socket.on("new_drawer", (data) =>{
     const room = rooms.get(data.token);
     room.currentPlayer = (room.currentPlayer + 1) % room.players.length;
-    socket.to(data.token).emit(room);
-    rooms.set(data.token, room);
-  });
-
-  socket.on("get_word_choice", () => {
+    if (room.currentPlayer === room.firstPlayerRound) {
+      if (room.currentRound === room.rounds) {
+        socket.to(data.token).emit("end_game", room);
+        rooms.del(data.token);
+      }
+      room.currentRound++;
+    }
     wordChoices = fileParser.getThreeRandomWords(words);
-    socket.emit("get_word_choice", wordChoices);
+    socket.to(data.token).except(room.players[room.currentPlayer]).emit("new_drawer", room);
+    socket.to(room.players[room.currentPlayer]).emit("words", {room: room, words: wordChoices});
+    rooms.set(data.token, room);
   });
 
   socket.on("chose_word", (data) => {
@@ -152,7 +158,7 @@ io.on("connection", (socket) => {
         }
       }
       if (allPlayersFoundTheWord(room)) {
-        socket.to(data.token).emit("all_player_found", room);
+        socket.to(data.token).emit("end_round", room);
       }
     } else {
       chatMessage = {
@@ -164,6 +170,10 @@ io.on("connection", (socket) => {
     room.chatMessages.push(chatMessage);
     socket.to(data.token).emit("send_message", room);
     rooms.set(data.token, room);
+  });
+
+  socket.on("timeout", (data) => {
+    socket.to(data.token).emit("end_round");
   });
 
   socket.on("disconnect", () => {

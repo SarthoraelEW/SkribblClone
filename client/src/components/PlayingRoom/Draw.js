@@ -4,6 +4,7 @@ import Tools from "./Tools";
 
 const THUMBS_DOWN_SRC = "./assets/images/thumbsdown.gif";
 const THUMBS_UP_SRC = "./assets/images/thumbsup.gif";
+const BUCKET_SRC = "./assets/images/filltool.gif";
 
 let mouseDown = 0;
 window.onmousedown = () => {
@@ -20,12 +21,54 @@ const Draw = () => {
 
   const [isDrawing, setIsDrawing] = useState(false);
 
-  const [lineWidth, setLineWidth] = useState(5);
+  const [lineWidth, setLineWidth] = useState(6);
   const [tool, setTool] = useState("PEN");
   const [color, setColor] = useState("Black");
 
   const [memPosCursorX, setMemPosCursorX] = useState(0);
   const [memPosCursorY, setMemPosCursorY] = useState(0);
+
+  let size6Cursor = "";
+  let size16Cursor = "";
+  let size30Cursor = "";
+  let size44Cursor = "";
+
+  const createContext = (width, height) => {
+    var canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    return canvas.getContext("2d");
+  }
+
+  const createImage = (size) => {
+    const context = createContext(size * 2, size * 2);
+    context.arc(size, size, size / 2 - 2, 2 * Math.PI, false);
+    context.fillStyle = "Black";
+    context.fill();
+    context.arc(size, size, size / 2, 2 * Math.PI, false);
+    context.lineWidth = 1;
+    context.strokeStyle = "Black";
+    context.stroke();
+    const url = context.canvas.toDataURL();
+    switch (size) {
+      case 6:
+        size6Cursor = url;
+        break;
+      case 16:
+        size16Cursor = url;
+        break;
+      case 30:
+        size30Cursor = url;
+        break;
+      case 44:
+        size44Cursor = url;
+        break;
+    }
+  };
+
+  createImage(6);
+
+  const [cursorImage, setCursorImage] = useState(size6Cursor);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -44,8 +87,49 @@ const Draw = () => {
   }, [color, lineWidth, tool]);
 
   const relativePos = (e) => {
-    const rect = canvasRef.current.getBoundingClientRect();
-    return {x: Math.floor(e.clientX - rect.left), y: Math.floor(e.clientY - rect.top)};
+    const el = canvasRef.current;
+    const rect = el.getBoundingClientRect();
+    return { x: Math.round((e.clientX - rect.left) * (el.width / el.offsetWidth)), y: Math.round((e.clientY - rect.top) * (el.height / el.offsetHeight)) };
+  };
+
+  const getPenCursorImage = (newLineWidth) => {
+    newLineWidth = newLineWidth !== null ? newLineWidth : lineWidth;
+    switch (newLineWidth) {
+      case 6:
+        if (size6Cursor === "") {
+          createImage(6);
+        }
+        return size6Cursor;
+      case 16:
+        if (size16Cursor === "") {
+          createImage(16);
+        }
+        return size16Cursor;
+      case 30:
+        if (size30Cursor === "") {
+          createImage(30);
+        }
+        return size30Cursor;
+      case 44:
+        if (size44Cursor === "") {
+          createImage(44);
+        }
+        return size44Cursor;
+      default:
+        break;
+    }
+  };
+
+  const setCursorUrl = (newTool, newLineWidth = null) => {
+    switch (newTool) {
+      case "BUCKET":
+        setCursorImage(BUCKET_SRC);
+        break;
+      default:
+        const newUrl = getPenCursorImage(newLineWidth);
+        setCursorImage(newUrl);
+        break;
+    }
   };
 
   const startDrawing = (e) => {
@@ -106,7 +190,7 @@ const Draw = () => {
 
   const fill = (colorOfPixel, pixelsToVisit, canvasWidth, canvasHeight, imageData) => {
     const pixelToDraw = getPixelFromColor(color);
-    while(pixelsToVisit.length) {
+    while (pixelsToVisit.length) {
       const newPos = pixelsToVisit.pop();
       let x = newPos.x;
       let y = newPos.y;
@@ -126,7 +210,7 @@ const Draw = () => {
         if (x > 0) {
           if (matchStartColor(pixelPos - 4, imageData, colorOfPixel)) {
             if (!reachLeft) {
-              pixelsToVisit.push({x: x - 1, y: y});
+              pixelsToVisit.push({ x: x - 1, y: y });
               reachLeft = true;
             }
           } else if (reachLeft) {
@@ -137,7 +221,7 @@ const Draw = () => {
         if (x < canvasWidth - 1) {
           if (matchStartColor(pixelPos + 4, imageData, colorOfPixel)) {
             if (!reachRight) {
-              pixelsToVisit.push({x: x + 1, y: y});
+              pixelsToVisit.push({ x: x + 1, y: y });
               reachRight = true;
             }
           } else if (reachRight) {
@@ -157,10 +241,10 @@ const Draw = () => {
       const canvasHeight = canvasRef.current.height;
       let imageData = ctxRef.current.getImageData(0, 0, canvasWidth, canvasHeight);
       const pos = relativePos(e);
-      const pixelPos = (pos.y * canvasWidth + pos.x) * 4 
+      const pixelPos = (pos.y * canvasWidth + pos.x) * 4
       const pixelColor = getColorFromPixel([imageData.data[pixelPos + 0], imageData.data[pixelPos + 1], imageData.data[pixelPos + 2], imageData.data[pixelPos + 3]]);
       if (pixelColor !== color) {
-        let pixelsToVisit = [{x: pos.x, y: pos.y}];
+        let pixelsToVisit = [{ x: pos.x, y: pos.y }];
         imageData = fill(pixelColor, pixelsToVisit, canvasWidth, canvasHeight, imageData);
         ctxRef.current.putImageData(imageData, 0, 0);
       }
@@ -174,9 +258,10 @@ const Draw = () => {
   };
 
   return (
-    <div className="draw">
+    <>
       <div className="drawContainer">
         <canvas
+          style={{ cursor: `url('${cursorImage}') ${lineWidth} ${lineWidth}, auto` }}
           id="canvas"
           onMouseDown={startDrawing}
           onMouseUp={endDrawing}
@@ -205,8 +290,9 @@ const Draw = () => {
         setTool={setTool}
         setLineWidth={setLineWidth}
         clear={clear}
+        setCursorUrl={setCursorUrl}
       />
-    </div>
+    </>
   );
 };
 
